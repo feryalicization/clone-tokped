@@ -1,6 +1,4 @@
 
-
-
 class Config(object):
     SECRET_KEY = 'my_secret_key'
     SECURITY_PASSWORD_SALT = 'my_password_salt'
