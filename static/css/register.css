@@ -1,0 +1,37 @@
+
+
+html{
+    font-family: 'Open Sauce One',sans-serif;
+}
+.left__title {
+    font-size: 1.6em;
+    font-weight: 600;
+    color: rgba(0,0,0,0.7);
+    margin-top: 30px;
+}
+
+
+.left__desc {
+    margin-top: 5px;
+    font-size: 0.9285714285714286rem;
+    line-height: 22px;
+    color: #606060;
+}
+
+
+
+.card{
+    border: 1px solid #e0e0e0;
+    border-radius: 3px !important;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+    padding: 24px 40px 32px;
+    width: 400px;
+    margin-left: 50px;
+}
+
+
+#box-title{
+    text-align: center;margin: 0;font-weight: 600;font-size: 1.5714285714285714rem;color: rgba(0,0,0,0.7);
+}
+
+
