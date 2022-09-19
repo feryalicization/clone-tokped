@@ -1,6 +1,7 @@
+import email
 from config import Config
 from entity import db
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, redirect, url_for, flash
 from datetime import date 
 import os
 from entity.model import *
@@ -9,7 +10,7 @@ from entity.model import User
 from flask_mail import Mail, Message
 from random import randint
 from flask import request, session
-from utils import *
+
 
 
 
@@ -22,8 +23,8 @@ db.init_app(app)
 
 app.config["MAIL_SERVER"]='smtp.gmail.com'
 app.config["MAIL_PORT"]=465
-app.config["MAIL_USERNAME"]='fery.chaerul@gmail.com'
-app.config['MAIL_PASSWORD']='putricantik2'                    #you have to give your password of gmail account
+app.config["MAIL_USERNAME"]='fery.alicization@gmail.com'
+app.config['MAIL_PASSWORD']='nzfxacevgeipxnjx'                    #you have to give your password of gmail account
 app.config['MAIL_USE_TLS']=False
 app.config['MAIL_USE_SSL']=True
 mail=Mail(app)
@@ -47,21 +48,44 @@ def index():
     return render_template('index.html', data=data)
 
 
+from random import *  
+from tes import *
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+      
+        email=request.form['email']
+        msg=Message(subject='OTP',sender='fery.alicization@gmail.com',recipients=[email])
+        msg.body=str(otp)
+        mail.send(msg)
 
-    # email
-    # if param['email'] is None:
-    #     return jsonify({'msg': 'Email cannot be empty', 'code': '-1'})
-    # if not validators.email(param['email']):
-    #     return jsonify({'error': "Email is not valid"})
-    # if request.method == 'POST':
-    email = request.form.get('email')
-    msg=Message(subject='OTP',sender='fery.chaerul@gmail.com',recipients=[email])
-    msg.body=str(otp)
-    mail.send(msg)
+        # req = db.session.query(User).filter_by(id=3).first()
+        # req.otp=otp
+        # db.session.commit()
+
+        # print(f'thai {req.otp}')
+        return redirect(url_for('verify'))
+
     return render_template('register.html')
+
+
+
+@app.route('/verify', methods=['GET', 'POST'])
+def verify():
+    if request.method == 'POST':
+        user_otp=request.form['otp']
+        if otp==int(user_otp):
+            return "<h3>Email varification succesfull</h3>"
+        return "<h3>Please Try Again</h3>"
+
+    return render_template('verify.html')
+
+
+
+     
+
+
     
     
 

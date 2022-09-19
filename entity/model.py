@@ -15,3 +15,4 @@ class User(db.Model):
     email = db.Column(db.String(225), unique=True)
     notlp = db.Column(db.String(225))
     password = db.Column(db.String(225))
+    otp = db.Column(db.String(225))
